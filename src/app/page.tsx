@@ -106,6 +106,17 @@ export default function Home() {
           </div>
         </form>
       </Card>
+      <p className="text-center text-sm text-muted-foreground mt-10">
+        Feito com ❤️ por{" "}
+        <a
+          href="https://portiolio-santiago-ferreiras-projects.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-red-600 hover:underline hover:text-red-800 transition-colors"
+        >
+          Santiago Ferreira
+        </a>
+      </p>
     </div>
   );
 }
