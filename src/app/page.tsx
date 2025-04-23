@@ -16,17 +16,15 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogTitle,
-  DialogTrigger,
 } from "@radix-ui/react-dialog";
 import { DialogHeader } from "@/components/ui/dialog";
 import { useState } from "react";
 
 type FormInputs = {
-  ad1: number;
-  ap1: number;
-  ad2: number;
-  ap2?: number | undefined;
+  ad1: number | string;
+  ap1: number | string;
+  ad2: number | string;
+  ap2?: number | string | undefined;
 };
 
 export default function Home() {
@@ -34,8 +32,11 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const { register, handleSubmit, reset } = useForm<FormInputs>();
   const onSubmit = (data: FormInputs) => {
-    const n1 = data.ad1 * 0.2 + data.ap1 * 0.8;
-    const ad2Peso = data.ad2 * 0.2;
+    const ad1 = parseFloat(String(data.ad1).replace(",", "."));
+    const ap1 = parseFloat(String(data.ap1).replace(",", "."));
+    const ad2 = parseFloat(String(data.ad2).replace(",", "."));
+    const n1 = ad1 * 0.2 + ap1 * 0.8;
+    const ad2Peso = ad2 * 0.2;
     const mediaMinima = 6;
 
     const ap2Minima = (mediaMinima * 2 - n1 - ad2Peso) / 0.8;
@@ -84,6 +85,7 @@ export default function Home() {
             <Input
               id="ad2"
               placeholder="Digite sua nota AD2"
+              required
               {...register("ad2")}
             />
           </CardContent>
